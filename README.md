@@ -1,6 +1,6 @@
 # 802-11-DCF-MAC implementation
 Tung Thanh Le
-ttl8614@louisiana.edu
+tungle@louisiana.edu
 ## General description:
 In this phase, we are asked to implement the RTS/CTS mode into the program. In addition, the
 network topology is created as well as source destination pairs are involved. In the 2x2, 4x4, 8x8,
