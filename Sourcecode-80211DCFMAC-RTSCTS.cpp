@@ -69,9 +69,6 @@ float errorChannelRand1[100];// generate random probability error in channel
 int nodeCW1[100];
 //------------------------
 
-
-
-
 int main ()
 {
 	printf("\n Tung Thanh Le \n CACS, UL Lafayette \n ttl8614@louisiana.edu \n Behavior of 802.11 DCF MAC (Phase 3)");
@@ -205,7 +202,7 @@ int main ()
 	// bubble sort on backoffNodes min-max
 	for (int i=0; i<numNodes; i++) {
 		for (int j=0; j<(numNodes-i-1); j++) {
-			if (backoffNodes1[j] > backoffNodes1[j+1]) { // increasing order
+			if (backoffNodes1[j] < backoffNodes1[j+1]) { // decreasing order
 				int swap = backoffNodes[j];
 				backoffNodes1[j] = backoffNodes1[j+1];
 				backoffNodes1[j+1] = swap;
