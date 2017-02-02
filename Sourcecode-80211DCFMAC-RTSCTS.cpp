@@ -3,13 +3,12 @@
 #include <time.h>
 using namespace std;
 
-
 int numNodes;
 int DIFS = 28; // us (=2*slotTime+SIFS) 
 int SIFS = 10; // us
 int maxFrameSize = 1500; // bytes
 //------ in a node --
-int numPktDrop[100];	// num packet dropped per each node i
+int numPktDrop[100];		// num packet dropped per each node i
 int randSeed[100];		// random seed per each node i
 double backoffNodes[100];	// backoff timer per each node i
 int delayNode[100];		// delay on each node i
@@ -19,7 +18,7 @@ double y_coor[100];		// y coordinate
 char SDpair[100];		// source destination pair
 int nPackets[100];		// num packets per each node i 
 double TX_range[100];		// transmission range of each node i
-float errorChannelRand[100];// generate random probability error in channel
+float errorChannelRand[100];	// generate random probability error in channel
 
 int neighborInUse[100];
 int netLinks[100][100];
@@ -39,19 +38,19 @@ int RTSCTSmode;
 int nxn;
 //-----------------
 
-int dataRate = 54; // 11Mbps for 802.11b; 54Mbps for 802.11g
-int slotTime = 9; // 20us(for 802.11b); 9us(for 802.11g)
+int dataRate = 54; 	// 11Mbps for 802.11b; 54Mbps for 802.11g
+int slotTime = 9; 	// 20us(for 802.11b); 9us(for 802.11g)
 
 int seedVal;
-int numCollision = 0; // times
-int CWmax = 1023*slotTime; // us
-int CWmin = 15*slotTime; // us
+int numCollision = 0; 		// times
+int CWmax = 1023*slotTime; 	// us
+int CWmin = 15*slotTime; 	// us
 
 int collisionDetected;
 int CWmaxCounter=0;
 
 float ProbGB; 
-int errorChannelDetected =0; // error channel status; "0" means error-free; "1" means error in channel
+int errorChannelDetected =0; 	// error channel status; "0" means error-free; "1" means error in channel
 int reTXcounter =0;
 //------------------------
 int numCollision1;
@@ -61,18 +60,14 @@ int numPktDrop1[100];
 //int randSeed[100];		// random seed per each node i
 double backoffNodes1[100];	// backoff timer per each node i
 int delayNode1[100];		// delay on each node i
-
 int nPackets1[100];		// num packets per each node i 
-
-float errorChannelRand1[100];// generate random probability error in channel
-
+float errorChannelRand1[100];	// generate random probability error in channel
 int nodeCW1[100];
 //------------------------
 
 int main ()
 {
 	printf("\n Tung Thanh Le \n CACS, UL Lafayette \n ttl8614@louisiana.edu \n Behavior of 802.11 DCF MAC (Phase 3)");
-	
 	printf("\n Input the network topology (NxN):");
 	scanf_s("%d", &nxn);
 
@@ -84,10 +79,8 @@ int main ()
 
 	printf("\n Is RTS/CTS mode enabled? (Input 0/1 for No/Yes)");
 	scanf_s("%d", &RTSCTSmode);
-
-
 	// ====================================================
-	numNodes = nxn*nxn; // num of nodes 
+	numNodes = nxn*nxn; 		// num of nodes 
 	int nn = nxn;
 	// initial 
 	for(int i=0; i<numNodes; i++){
@@ -104,13 +97,13 @@ int main ()
 	// construct the coordinator of the network topology
 	int v=0, countY=0;
 	for(int i=0; i<numNodes; i++){
-		x_coor[i] = (i%nn)*145; // x-coordinate
+		x_coor[i] = (i%nn)*145; 	// x-coordinate
 		// y-coordinate
 		if(countY < nn){
 			y_coor[i] = v*145;
 			countY = countY +1;
 		} else {
-			countY = 0;  // reset for a new row
+			countY = 0;  		// reset for a new row
 			countY = countY +1;
 			v = v +1;
 			y_coor[i] = v*145;
@@ -119,7 +112,6 @@ int main ()
 		printf("\n node %d (x %f y %f), TX range %f \n", i, x_coor[i], y_coor[i], TX_range[i]);
 	}
 
-	
 	// assign the source nodes and destination nodes for the network
 	int numSrcNodes =0;
 	for(int i=0; i<numNodes; i++){
@@ -185,7 +177,6 @@ int main ()
 		backoffNodes[i] = ((randSeed[i] % nodeCW[i])*(101/100));
 		//printf("\n backoff %f", backoffNodes[i]);
 	}
-
 	
 	// bubble sort on backoffNodes min-max
 	for (int i=0; i<numNodes; i++) {
@@ -696,22 +687,15 @@ int main ()
 		} // end while
 	} //end else
 	
-
-
-
-	
-	
 	printf("\n --------- RTS/CTS enable --------- ");
 	printf("\n Number of Collision %d", numCollision);
 	
 	for(int i=0; i<numNodes; i+=2){ 
 		printf("\n node %d: Total delay %f us", i, totalDelay[i]);
-		
 	}
 	
 	for(int i=0; i<numNodes; i+=2){ 
 		printf("\n node %d: Number of packets dropped %d ", i, numPktDrop[i]);
-		
 	}
 
 	printf("\n --------- RTS/CTS disable --------- ");
@@ -719,16 +703,12 @@ int main ()
 	
 	for(int i=0; i<numNodes; i+=2){ 
 		printf("\n node %d: Total delay %f us", i, totalDelay1[i]);
-		
 	}
 	
 	for(int i=0; i<numNodes; i+=2){ 
 		printf("\n node %d: Number of packets dropped %d ", i, numPktDrop1[i]);
-		
 	}
-		
-
+	
 	while(1){};
 
-	
 } // end main()
