@@ -3,9 +3,9 @@
 #include <time.h>
 using namespace std;
 
-int numNodes;
-int DIFS = 28; // us (=2*slotTime+SIFS) 
-int SIFS = 10; // us
+int numNodes;	// number of nodes in the network
+int DIFS = 28; 	// us (=2*slotTime+SIFS) 
+int SIFS = 10; 	// us
 int maxFrameSize = 1500; // bytes
 //------ in a node --
 int numPktDrop[100];		// num packet dropped per each node i
