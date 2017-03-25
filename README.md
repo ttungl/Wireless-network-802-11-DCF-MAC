@@ -1,7 +1,7 @@
-#802-11-DCF-MAC implementation
+# 802-11-DCF-MAC implementation
         Author: Tung Thanh Le
         Contact: ttungl at gmail dot com
-###General description:
+### General description:
 In this course project, we are asked to implement the RTS/CTS mode into a wireless network medium. 
 A network topology is created as well as source destination pairs are involved. In each 2x2, 4x4, 8x8,
 10x10 networks, we assume that the even nodes are the source nodes, and the odd nodes are
